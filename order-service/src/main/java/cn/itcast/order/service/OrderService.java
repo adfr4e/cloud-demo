@@ -1,5 +1,6 @@
 package cn.itcast.order.service;
 
+import cn.itcast.order.clients.UserClient;
 import cn.itcast.order.mapper.OrderMapper;
 import cn.itcast.order.pojo.Order;
 import cn.itcast.order.pojo.User;
@@ -15,7 +16,23 @@ public class OrderService {
     @Resource
     private OrderMapper orderMapper;
 
-    @Autowired
+    @Resource
+    private UserClient userClient;
+
+    public Order queryOrderById(Long orderId) {
+        // 1.查询订单
+        Order order = orderMapper.findById(orderId);
+
+        User user = userClient.findById(order.getUserId());
+        order.setUser(user);
+
+
+        // 4.返回
+        return order;
+    }
+
+
+/*    @Autowired
     private RestTemplate restTemplate;
 
     public Order queryOrderById(Long orderId) {
@@ -30,5 +47,5 @@ public class OrderService {
 
         // 4.返回
         return order;
-    }
+    }*/
 }

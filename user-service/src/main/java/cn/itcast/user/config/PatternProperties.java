@@ -14,9 +14,9 @@ public class PatternProperties {
     private String format;
     private String name;
 
-    @Override
+/*    @Override
     public String toString() {
         return LocalDateTime.now().format(DateTimeFormatter.ofPattern(getFormat())) +
                 "\n\n" + getName();
-    }
+    }*/
 }
